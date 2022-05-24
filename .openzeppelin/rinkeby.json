@@ -1,0 +1,66 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x396a23C45f0187BD3B358743862547B8aAf3b122",
+    "txHash": "0xcaf22b285f39a8c8816bd81b580288672cde1c04fb6ad8c7b7eeb7d96c622151"
+  },
+  "proxies": [
+    {
+      "address": "0xae77EDb24492E2944f7b83584980c9834950d54d",
+      "txHash": "0x82abd051c7a595dda72c2a377d5f5a36db23a95798152bc2791fb7c98728c0e4",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "e2589b6c27c24b06a747615e866cea1a47e2d70b2fbcd75af4b34051f77119c5": {
+      "address": "0xC7126f1E1578076C01d8D4DE788aD10fac647075",
+      "txHash": "0xc71e7f369c359a521e21cf95e54d6668cf00da4cd7b871005d70e289c55ab40d",
+      "layout": {
+        "storage": [
+          {
+            "label": "nonces",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "BasicMetaTransaction",
+            "src": "contracts\\EIP712Meta.sol:8"
+          },
+          {
+            "label": "message",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_string_storage",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:6"
+          },
+          {
+            "label": "owner",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_address",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:7"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    }
+  }
+}
