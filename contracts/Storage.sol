@@ -13,7 +13,7 @@ event ValueChanged(string value);
         
     }
 
-    function getMessage();() public view returns (string memory current_message, address currentOwner)
+    function getMessage() public view returns (string memory current_message, address currentOwner)
     {
         current_message = message;
         currentOwner = owner;
