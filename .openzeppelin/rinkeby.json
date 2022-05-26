@@ -1,34 +1,42 @@
 {
   "manifestVersion": "3.2",
   "admin": {
-    "address": "0xD9Bc5F7bC3B1f2b37bE5A26fCfd60f76d7B0b972",
-    "txHash": "0x8590891a60608e04df28b16c8b55b40a30a6ebe4f111d4d7e4e0b123f1690a8d"
+    "address": "0xD1114C19c4383DAF4E3d1F93986Ed7E1448b4EC8",
+    "txHash": "0x7a9308c5450bc99155c6ab46acfe1590774b5b32a91841e8bd493d40fee6f948"
   },
   "proxies": [
     {
-      "address": "0xc0e98792174e041f24C48770F36DdC41f8d6F5f2",
-      "txHash": "0xc6338ae66cb2793ad48377dff584b054e28ebe8ca7d3d32ea22ff737444a844e",
+      "address": "0xd2Fe96480ca84ca2dA66Ac3346bd79fc4fBCB9f8",
+      "txHash": "0x58255eba7618352a9b769104832bd39eccd8c1d9d1b585f24e817cd9d8850ec9",
       "kind": "transparent"
     }
   ],
   "impls": {
-    "e2589b6c27c24b06a747615e866cea1a47e2d70b2fbcd75af4b34051f77119c5": {
-      "address": "0x2149D7BED828045D04fDCD24e7a1AeeF96971bDe",
-      "txHash": "0x4ca8a639c481067e63e5297dbf097c2209b929fa57577f95d575e14e9e6ed43a",
+    "c3fd2b976545168c0db4c48916092d03727dd6598edc7c73e02f2cce5bbe379b": {
+      "address": "0x57a01797395a66F8E3a90f707688AAC2A07D07fD",
+      "txHash": "0x19700a23ed21eb9f3aebfd460518b7b19757da9f7ff693d7f431328587526016",
       "layout": {
         "storage": [
           {
-            "label": "nonces",
+            "label": "domainSeparator",
             "offset": 0,
             "slot": "0",
+            "type": "t_bytes32",
+            "contract": "EIP712Base",
+            "src": "contracts\\Base\\EIP712Struct.sol:15"
+          },
+          {
+            "label": "nonces",
+            "offset": 0,
+            "slot": "1",
             "type": "t_mapping(t_address,t_uint256)",
-            "contract": "BasicMetaTransaction",
-            "src": "contracts\\EIP712Meta.sol:8"
+            "contract": "EIP712MetaTransaction",
+            "src": "contracts\\EIP712Meta.sol:11"
           },
           {
             "label": "message",
             "offset": 0,
-            "slot": "1",
+            "slot": "2",
             "type": "t_string_storage",
             "contract": "Storage",
             "src": "contracts\\Storage.sol:6"
@@ -36,7 +44,7 @@
           {
             "label": "owner",
             "offset": 0,
-            "slot": "2",
+            "slot": "3",
             "type": "t_address",
             "contract": "Storage",
             "src": "contracts\\Storage.sol:7"
@@ -46,6 +54,10 @@
           "t_address": {
             "label": "address",
             "numberOfBytes": "20"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
           },
           "t_mapping(t_address,t_uint256)": {
             "label": "mapping(address => uint256)",

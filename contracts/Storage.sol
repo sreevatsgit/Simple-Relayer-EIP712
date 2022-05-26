@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 import "./EIP712Meta.sol";
 
-contract Storage is BasicMetaTransaction{
+contract Storage is EIP712MetaTransaction{
     string public message;
     address public owner;
 event ValueChanged(string value);
@@ -19,4 +19,3 @@ event ValueChanged(string value);
         currentOwner = owner;
     }
 }
-//0xc0e98792174e041f24C48770F36DdC41f8d6F5f2
