@@ -19,3 +19,4 @@ event ValueChanged(string value);
         currentOwner = owner;
     }
 }
+//0xc0e98792174e041f24C48770F36DdC41f8d6F5f2
