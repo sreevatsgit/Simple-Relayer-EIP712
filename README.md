@@ -1,6 +1,9 @@
-# Basic Sample Hardhat Project
+# Simple Relayer Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+## Author: Sreevatsan Komandur Sridhar
+
+This project demonstrates a Simple Relayer using Hardhat, upgradable contracts by openzeppelin and NextJS. The relayer uses 4 contracts namely: EIPBaseContract.sol, EIPMeta.sol, SafeMath.sol (Solidity version 0.8.0) and Storage.sol that were created using Hardhat and were deployed at the rinkeby test network.
+
 
 Try running some of the following tasks:
 
