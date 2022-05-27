@@ -20,9 +20,9 @@ The app was built using NextJS
 ```
 yarn dev
 ```
+
 If you are deploying your own contract, then edit the config,js by :
-``
+```
 address: "0x30ba9FaD17844e51a2916CffDdF71C029adAaAb7", //enter your contract address that you saved!
     abi: <> // copy the abi at artifacts> contracts>Storage.sol>Storage.json
-
 ```
