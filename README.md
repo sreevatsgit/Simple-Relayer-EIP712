@@ -11,9 +11,10 @@ npx hardhat run scripts/deploy.js --network rinkeby
 The shell terminal would print the given contract address. (Save it!)
 
 To run the app:
+
 ```
 cd my-app
-``
+```
 The app was built using NextJS and materialUI
 
 ```
