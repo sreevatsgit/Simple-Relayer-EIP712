@@ -15,7 +15,7 @@ To run the app:
 ```
 cd my-app
 ```
-The app was built using NextJS and materialUI
+The app was built using NextJS
 
 ```
 yarn dev
