@@ -1,20 +1,20 @@
 const { config } = require("./config");
 import { Grid, TextField, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
+import {
+  NotificationContainer,
+  NotificationManager
+} from "react-notifications";
 
-import {  NotificationManager } from "react-notifications";
+import Web3 from "web3";
+let sigUtil = require("eth-sig-util");
 
+//define domainType, domain Data and MetaTransaction Type
 const domainType = [
   { name: "name", type: "string" },
   { name: "version", type: "string" },
   { name: "chainId", type: "uint256" },
   { name: "verifyingContract", type: "address" }
-];
-
-const metaTransactionType = [
-  { name: "nonce", type: "uint256" },
-  { name: "from", type: "address" },
-  { name: "functionSignature", type: "bytes" }
 ];
 
 let domainData = {
@@ -23,37 +23,67 @@ let domainData = {
   verifyingContract: config.contract.address
 };
 
-const SmartContractGrid = () => {
+const metaTransactionType = [
+  { name: "nonce", type: "uint256" },
+  { name: "from", type: "address" },
+  { name: "functionSignature", type: "bytes" }
+];
+
+
 let web3;
 let contract;
-  const [message, setMessage] = useState("This is a default message");
+
+function SmartContractGrid() {
+  const [quote, setQuote] = useState("This is a default quote");
   const [owner, setOwner] = useState("Default Owner Address");
-  const [newMessage, setNewMessage] = useState("");
+  const [newQuote, setNewQuote] = useState("");
   const [selectedAddress, setSelectedAddress] = useState("");
   const [metaTxEnabled, setMetaTxEnabled] = useState(true);
+
+
   useEffect(() => {
     async function init() {
-      contract = new web3.eth.Contract(
-      config.contract.abi,
-      config.contract.address
-      );
-      
-    init();
-  }
-}, []);
-console.log
+      if (
+        typeof window.ethereum !== "undefined" &&
+        window.ethereum.isMetaMask
+      ) {
+        // Ethereum user detected. You can now use the provider.
+        const provider = window["ethereum"];
+        await provider.enable();
+        if (provider.networkVersion === "4") {
+          domainData.chainId = 4;
+          web3 = new Web3(provider);
 
-  const onMessageChange = event => {
-    setNewMessage(event.target.value);
+          contract = new web3.eth.Contract(
+            config.contract.abi,
+            config.contract.address
+          );
+          setSelectedAddress(provider.selectedAddress);
+          getQuoteFromNetwork();
+          provider.on("accountsChanged", function(accounts) {
+            setSelectedAddress(accounts[0]);
+          });
+        } else {
+          showErrorMessage("Please change the network in metamask to Rinkeby");
+        }
+      } else {
+        showErrorMessage("Metamask not installed");
+      }
+    }
+    init();
+  }, []);
+
+  const onQuoteChange = event => {
+    setNewQuote(event.target.value);
   };
 
   const onSubmit = async event => {
-    if (newMessage != "" && contract) {
+    if (newQuote != "" && contract) {
       if (metaTxEnabled) {
         console.log("Sending meta transaction");
         let userAddress = selectedAddress;
         let nonce = await contract.methods.getNonce(userAddress).call();
-        let functionSignature = contract.methods.setMessage(newMessage).encodeABI();
+        let functionSignature = contract.methods.setQuote(newQuote).encodeABI();
         let message = {};
         message.nonce = parseInt(nonce);
         message.from = userAddress;
@@ -100,18 +130,18 @@ console.log
       } else {
         console.log("Sending normal transaction");
         contract.methods
-          .setMessage(newMessage)
+          .setQuote(newQuote)
           .send({ from: selectedAddress })
           .on("transactionHash", function(hash) {
             showInfoMessage(`Transaction sent to blockchain with hash ${hash}`);
           })
           .once("confirmation", function(confirmationNumber, receipt) {
             showSuccessMessage("Transaction confirmed");
-            getMessageFromNetwork();
+            getQuoteFromNetwork();
           });
       }
     } else {
-      showErrorMessage("Please enter the Message");
+      showErrorMessage("Please enter the quote");
     }
   };
 
@@ -133,26 +163,26 @@ console.log
     };
   };
 
-  const getMessageFromNetwork = () => {
+  const getQuoteFromNetwork = () => {
     if (web3 && contract) {
       contract.methods
-        .getMessage()
+        .getQuote()
         .call()
         .then(function(result) {
           console.log(result);
           if (
             result &&
-            result.current_message != undefined &&
-            result.current_owner != undefined
+            result.currentQuote != undefined &&
+            result.currentOwner != undefined
           ) {
-            if (result.current_message == "") {
-              showErrorMessage("No messages set on blockchain yet");
+            if (result.currentQuote == "") {
+              showErrorMessage("No quotes set on blockchain yet");
             } else {
-              setMessage(result.current_message);
-              setOwner(result.current_owner);
+              setQuote(result.currentQuote);
+              setOwner(result.currentOwner);
             }
           } else {
-            showErrorMessage("Not able to get message information from Network");
+            showErrorMessage("Not able to get quote information from Network");
           }
         });
     }
@@ -200,22 +230,35 @@ console.log
       }
     }
   };
-  
-  return(  
-        <Grid container justifyContent="center" alignItems = "center">
-        <Grid item xs={2}>
-            <TextField  placeholder="Enter message"
-              onChange={onMessageChange}
-              value={newMessage}/>
-        </Grid>
-        <Grid item xs={2}>
-        <Button variant="contained" color="primary" onClick={onSubmit}>
+
+  return (
+    <div className="SmartContractGrid">
+      <section className="main">
+        <div className="mb-wrap mb-style-2">
+          <blockquote>
+            <p>Current Quote message is: {quote}</p>
+          </blockquote>
+        </div>      
+      </section>
+      <section>
+        <div className="submit-container">
+          <div className="submit-row">
+            <input
+              type="text"
+              placeholder="Enter your quote"
+              onChange={onQuoteChange}
+              value={newQuote}
+            />
+            <Button variant="contained" color="primary" onClick={onSubmit}>
               Submit
             </Button>
-        </Grid>
-        </Grid>
+          </div>
+        </div>
+      </section>
+      <NotificationContainer />
+    </div>
   );
-  }
+}
 
 
 export default SmartContractGrid;

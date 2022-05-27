@@ -1,29 +1,25 @@
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.9;
-import "./Base/EIP712Struct.sol";
-import "./Base/SafeMath.sol";
-
-contract EIP712MetaTransaction is EIP712Base {
+pragma solidity ^0.8.0;
+import "./BaseContracts/EIPBaseContract.sol";
+import "./BaseContracts/SafeMath.sol";
+contract EIPMeta is EIPBaseContract{
     using SafeMath for uint256;
     bytes32 private constant META_TRANSACTION_TYPEHASH = keccak256(bytes("MetaTransaction(uint256 nonce,address from,bytes functionSignature)"));
-
     event MetaTransactionExecuted(address userAddress, address relayerAddress, bytes functionSignature);
     mapping(address => uint256) private nonces;
-
-    /*
-     * Meta transaction structure.
-     * No point of including value field here as if user is doing value transfer then he has the funds to pay for gas
-     * He should call the desired function directly in that case.
-     */
     struct MetaTransaction {
         uint256 nonce;
         address from;
         bytes functionSignature;
     }
-
-    constructor(string memory name, string memory version) public EIP712Base(name, version) {}
-
-    function convertBytesToBytes4(bytes memory inBytes) public pure returns (bytes4 outBytes4) {
+    
+        function MetaEIP(string memory name, string memory version) public returns (bytes32){
+           bytes32 DomainSep;
+            DomainSep = EIPBaseContract.initialize(name,version);
+            return DomainSep;
+        }
+    
+    function convertBytesToBytes4(bytes memory inBytes) internal pure returns (bytes4 outBytes4) {
         if (inBytes.length == 0) {
             return 0x0;
         }
@@ -33,7 +29,7 @@ contract EIP712MetaTransaction is EIP712Base {
         }
     }
 
-    function executeMetaTransaction(address payable userAddress,
+    function executeMetaTransaction(address userAddress,
         bytes memory functionSignature, bytes32 sigR, bytes32 sigS, uint8 sigV) public payable returns(bytes memory) {
         bytes4 destinationFunctionSig = convertBytesToBytes4(functionSignature);
         require(destinationFunctionSig != msg.sig, "functionSignature can not be of executeMetaTransaction method");
@@ -61,7 +57,7 @@ contract EIP712MetaTransaction is EIP712Base {
         ));
     }
 
-    function getNonce(address payable user) external view returns(uint256 nonce) {
+    function getNonce(address user) external view returns(uint256 nonce) {
         nonce = nonces[user];
     }
 
@@ -81,10 +77,10 @@ contract EIP712MetaTransaction is EIP712Base {
             }
         } else {
             sender = msg.sender;
-
-
         }
         return sender;
     }
+
+
 }
-//address: 0xd2Fe96480ca84ca2dA66Ac3346bd79fc4fBCB9f8
+

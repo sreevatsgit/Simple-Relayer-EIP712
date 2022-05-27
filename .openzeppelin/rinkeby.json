@@ -1,20 +1,20 @@
 {
   "manifestVersion": "3.2",
   "admin": {
-    "address": "0xD1114C19c4383DAF4E3d1F93986Ed7E1448b4EC8",
-    "txHash": "0x7a9308c5450bc99155c6ab46acfe1590774b5b32a91841e8bd493d40fee6f948"
+    "address": "0x4130ada588cA41AAB7BfcC31Cce21482f24312C7",
+    "txHash": "0x37c5c520d5c92e6e97f4ab7ff8ebcb1f322567d1d35e4af13aedbc33aa244dbc"
   },
   "proxies": [
     {
-      "address": "0xd2Fe96480ca84ca2dA66Ac3346bd79fc4fBCB9f8",
-      "txHash": "0x58255eba7618352a9b769104832bd39eccd8c1d9d1b585f24e817cd9d8850ec9",
+      "address": "0x30ba9FaD17844e51a2916CffDdF71C029adAaAb7",
+      "txHash": "0x820ca5206401a6f99d0c68bce49f05da73232c4bfdbfaa8fd4c6c9f12ad268e1",
       "kind": "transparent"
     }
   ],
   "impls": {
-    "c3fd2b976545168c0db4c48916092d03727dd6598edc7c73e02f2cce5bbe379b": {
-      "address": "0x57a01797395a66F8E3a90f707688AAC2A07D07fD",
-      "txHash": "0x19700a23ed21eb9f3aebfd460518b7b19757da9f7ff693d7f431328587526016",
+    "f91d7cf1ded68f08efce223b615b81ee58b4feff575678a318a986f2e7155bf0": {
+      "address": "0x0F624f56b376a21e922EDC755274193EF905981a",
+      "txHash": "0x3ed63088a14737497783367d3390cdf875a095d587956dd7cf6a030b7fc07b57",
       "layout": {
         "storage": [
           {
@@ -22,38 +22,296 @@
             "offset": 0,
             "slot": "0",
             "type": "t_bytes32",
-            "contract": "EIP712Base",
-            "src": "contracts\\Base\\EIP712Struct.sol:15"
+            "contract": "EIPBaseContract",
+            "src": "contracts\\BaseContracts\\EIPBaseContract.sol:14"
+          },
+          {
+            "label": "initialized",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bool",
+            "contract": "EIPBaseContract",
+            "src": "contracts\\BaseContracts\\EIPBaseContract.sol:15"
           },
           {
             "label": "nonces",
             "offset": 0,
-            "slot": "1",
+            "slot": "2",
             "type": "t_mapping(t_address,t_uint256)",
-            "contract": "EIP712MetaTransaction",
-            "src": "contracts\\EIP712Meta.sol:11"
+            "contract": "EIPMeta",
+            "src": "contracts\\EIPMeta.sol:9"
           },
           {
-            "label": "message",
+            "label": "quote",
             "offset": 0,
-            "slot": "2",
+            "slot": "3",
             "type": "t_string_storage",
             "contract": "Storage",
-            "src": "contracts\\Storage.sol:6"
+            "src": "contracts\\Storage.sol:7"
           },
           {
             "label": "owner",
             "offset": 0,
-            "slot": "3",
+            "slot": "4",
             "type": "t_address",
             "contract": "Storage",
-            "src": "contracts\\Storage.sol:7"
+            "src": "contracts\\Storage.sol:8"
           }
         ],
         "types": {
           "t_address": {
             "label": "address",
             "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    "cd143676a60b154856b3840aafb12e0c353d6404027b2f8b9f3acbf9b7f5dc73": {
+      "address": "0x9b3A05713F33d14b3C9E83053aFf50263B8fc406",
+      "txHash": "0x6c53c4594be78130d7c1e11f0c4488b8474c5ee47b01ff09e40b023e539d5df0",
+      "layout": {
+        "storage": [
+          {
+            "label": "domainSeparator",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bytes32",
+            "contract": "EIPBaseContract",
+            "src": "contracts\\BaseContracts\\EIPBaseContract.sol:14"
+          },
+          {
+            "label": "initialized",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bool",
+            "contract": "EIPBaseContract",
+            "src": "contracts\\BaseContracts\\EIPBaseContract.sol:15"
+          },
+          {
+            "label": "nonces",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "EIPMeta",
+            "src": "contracts\\EIPMeta.sol:9"
+          },
+          {
+            "label": "store",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bytes32",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:7"
+          },
+          {
+            "label": "quote",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_string_storage",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:11"
+          },
+          {
+            "label": "owner",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_address",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:12"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    "c0d8007a3ef7f5b663bcce3b4e05948263c2d93eb98c6ff0b292dcd545697f1c": {
+      "address": "0xF457661390B39b800496E6D85849439F5B511952",
+      "txHash": "0x8fbe9155df3fccaedf23b0086f4ffd6b167c2fad38bab08a0ebdb826fd7e28c4",
+      "layout": {
+        "storage": [
+          {
+            "label": "domainSeparator",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bytes32",
+            "contract": "EIPBaseContract",
+            "src": "contracts\\BaseContracts\\EIPBaseContract.sol:14"
+          },
+          {
+            "label": "initialized",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bool",
+            "contract": "EIPBaseContract",
+            "src": "contracts\\BaseContracts\\EIPBaseContract.sol:15"
+          },
+          {
+            "label": "nonces",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "EIPMeta",
+            "src": "contracts\\EIPMeta.sol:9"
+          },
+          {
+            "label": "store",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bytes32",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:7"
+          },
+          {
+            "label": "quote",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_string_storage",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:12"
+          },
+          {
+            "label": "owner",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_address",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:13"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    },
+    "62fbd3ad95b868ff551c016b163df020658014b7833f698690340c99521e1a2f": {
+      "address": "0x48AE586839808e6A0407D0E8c93D96af4709E1dC",
+      "txHash": "0x59cd315bfc4dab6a90580db1e0d0a1444a31ac6e231949f610974bc9698bdb46",
+      "layout": {
+        "storage": [
+          {
+            "label": "domainSeparator",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bytes32",
+            "contract": "EIPBaseContract",
+            "src": "contracts\\BaseContracts\\EIPBaseContract.sol:14"
+          },
+          {
+            "label": "initialized",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bool",
+            "contract": "EIPBaseContract",
+            "src": "contracts\\BaseContracts\\EIPBaseContract.sol:15"
+          },
+          {
+            "label": "nonces",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "EIPMeta",
+            "src": "contracts\\EIPMeta.sol:9"
+          },
+          {
+            "label": "store",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bytes32",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:7"
+          },
+          {
+            "label": "quote",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_string_storage",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:12"
+          },
+          {
+            "label": "owner",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_address",
+            "contract": "Storage",
+            "src": "contracts\\Storage.sol:13"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
           },
           "t_bytes32": {
             "label": "bytes32",
