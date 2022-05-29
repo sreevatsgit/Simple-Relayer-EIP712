@@ -5,7 +5,8 @@
 This project demonstrates a Simple Relayer using Hardhat, upgradable contracts by openzeppelin and NextJS. The relayer uses 4 contracts namely: EIPBaseContract.sol, EIPMeta.sol, SafeMath.sol (Solidity version 0.8.0) and Storage.sol that were created using Hardhat and were deployed to the Rinkeby test network.
 
 You can deploy these contracts too by following the following steps:
-1) Go to  ```config.js``` and replace the secret key with yours (found in metamask). Note you need to add "0x" to it. 
+1) Go to  ```config.js``` and paste your secret key after the 0x in accounts (secret key found in metamask).
+2) Run:
 ```
 npx hardhat run scripts/deploy.js --network rinkeby
 ```
