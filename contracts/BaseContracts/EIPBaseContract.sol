@@ -12,7 +12,7 @@ contract EIPBaseContract {
         bytes32 salt;
     }
     
-// Typehash [click link here] (https://eips.ethereum.org/EIPS/eip-712#rationale-for-typehash)
+// Typehash (https://eips.ethereum.org/EIPS/eip-712#rationale-for-typehash)
     bytes32 internal constant EIP712_DOMAIN_TYPEHASH = keccak256(bytes("EIP712Domain(string name,string version,address verifyingContract,bytes32 salt)"));
 
     bytes32 internal domainSeparator;
