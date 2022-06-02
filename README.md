@@ -28,3 +28,9 @@ If you are deploying your own contract, then edit the config,js by :
 address: "0x30ba9FaD17844e51a2916CffDdF71C029adAaAb7", //enter your contract address that you saved!
     abi: <> // copy the abi at artifacts> contracts>Storage.sol>Storage.json
 ```
+
+# References:
+
+Bloemen, Remco, Lenoid Logvinov, and Jacob Evans. n.d. "EIP-712: Ethereum typed structured data hashing and signing."  Ethereum Improvement Proposals. https://eips.ethereum.org/EIPS/eip-712#rationale-for-typehash
+
+Jie, Wei Koh. 2018. "EIP712 is here: What to expect and how to use it." Medium. https://medium.com/metamask/eip712-is-coming-what-to-expect-and-how-to-use-it-bb92fd1a7a26
