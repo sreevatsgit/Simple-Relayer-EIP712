@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 contract EIPBaseContract {
 
-// Defining a domain sep [click link here] (https://eips.ethereum.org/EIPS/eip-712#definition-of-domainseparator)
+// Defining a domain sep (https://eips.ethereum.org/EIPS/eip-712#definition-of-domainseparator)
 
     struct EIP712Domain {
         string name;
