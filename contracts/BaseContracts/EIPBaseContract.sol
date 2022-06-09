@@ -18,7 +18,7 @@ contract EIPBaseContract {
     bytes32 internal domainSeparator;
     bool private initialized;
 
-//defining a domain seperator     
+//Function domain seperator     
      function initialize( string memory name, string memory version) public returns(bytes32) {
         
          domainSeparator = keccak256(abi.encode(
